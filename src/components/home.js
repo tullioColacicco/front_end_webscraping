@@ -4,7 +4,7 @@ function Home() {
       <div className="card_container">
         <article className="card">
           <img
-            src="https://img.pokemondb.net/sprites/silver/shiny/typhlosion.png"
+            src="https://www.brik.co/cdn/shop/articles/new-york-yankees-pixel-art-logo-sports-mlb-new-york-yankees_grande.png?v=1501224718"
             alt="Typhlosion"
           />
           <div className="text">
