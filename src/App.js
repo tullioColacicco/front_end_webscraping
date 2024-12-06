@@ -1,15 +1,20 @@
 import "./App.css";
+import Header from "./components/header";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/home";
+import News from "./components/news";
+import Soto from "./components/soto";
 
 function App() {
   return (
     <div class="container">
-      <div className="header">
-        <h1 className="one">Yankess</h1>
-        <h1 className="two">news</h1>
-        <h1 className="three">Juan Soto</h1>
-      </div>
+      <Header></Header>
       <div className="content">
-        <h1>hello world</h1>
+        <Routes>
+          <Route path="/" Component={Home}></Route>
+          <Route path="news" Component={News}></Route>
+          <Route path="soto" Component={Soto}></Route>
+        </Routes>
       </div>
 
       <div className="footer"></div>

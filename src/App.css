@@ -16,26 +16,33 @@
 }
 
 .header { grid-area: header;
-  align-content: center;
+  /* align-content: center; */
  display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-template-rows: 1fr;
   /* grid-gap: 20px;
   padding: 20px;
   margin: 20px; */
+  justify-content:end;
   background-color: rgb(80, 57, 130);
   }
   .one{
     display: block;
     align-content: center;
+    text-align: center;
   } 
   .two {
     display: block;
     align-content: center;
+    text-align: center;
+    
   }
+
 
   .three {
     display: block;
+    text-align: center;
+    
     align-content: center;
   }
 
