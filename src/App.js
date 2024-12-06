@@ -9,13 +9,13 @@ function App() {
   return (
     <div class="container">
       <Header></Header>
-      <div className="content">
-        <Routes>
-          <Route path="/" Component={Home}></Route>
-          <Route path="news" Component={News}></Route>
-          <Route path="soto" Component={Soto}></Route>
-        </Routes>
-      </div>
+      {/* <div className="content"> */}
+      <Routes>
+        <Route path="/" Component={Home}></Route>
+        <Route path="news" Component={News}></Route>
+        <Route path="soto" Component={Soto}></Route>
+      </Routes>
+      {/* </div> */}
 
       <div className="footer"></div>
     </div>
