@@ -8,8 +8,8 @@ function Header() {
       <Link to="news" className="two">
         News
       </Link>
-      <Link to="soto" className="three">
-        Juan Soto
+      <Link to="prospects" className="three">
+        Prospects
       </Link>
     </div>
   );
