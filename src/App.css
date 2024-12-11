@@ -58,6 +58,10 @@
   }
 
 .footer { grid-area: footer; background-color: aquamarine; }
+.card {
+	display: flex;
+}
+
 
 .card_container{
 	display: flex;
@@ -76,7 +80,7 @@
 	box-shadow: 2px 2px 6px 0px rgba(236, 230, 230, 0.3);
   }
   .card_container > article img {
-	max-width: 100;
+	width: 50%;
 	height: 10vh
   }
 

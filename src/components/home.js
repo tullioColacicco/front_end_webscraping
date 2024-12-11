@@ -17,12 +17,10 @@ function Home() {
 
       <div className="card_container">
         <article className="card">
-          <div>
-            <img
-              src="https://img.pokemondb.net/sprites/silver/shiny/typhlosion.png"
-              alt="Typhlosion"
-            />
-          </div>
+          <img
+            src="https://img.pokemondb.net/sprites/silver/shiny/typhlosion.png"
+            alt="Typhlosion"
+          />
           <div className="text">
             <h3>You Got!</h3>
             <p>Typhlosion</p>
