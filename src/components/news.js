@@ -4,6 +4,7 @@ const News = () => {
   const [scrapedData, setScrapedData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const item = scrapedData[0];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,26 +36,20 @@ const News = () => {
 
   return (
     <div className="content">
-      <h1>Scrape News</h1>
-
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {scrapedData.length > 0 && (
-        <div>
-          <h2>Scraped Data:</h2>
-          <ul>
-            {scrapedData.map((item, index) => (
-              <li key={index}>
-                <a href={item.title} target="_blank" rel="noopener noreferrer">
-                  {item.title}
-                </a>
-                <p>{item.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {scrapedData.length > 0 &&
+        scrapedData.map((item, index) => {
+          return (
+            <div key={index} className="card_container">
+              <a href={item.title} target="_blank" rel="noopener noreferrer">
+                //need to shorten the link to .com link
+              </a>
+              <h1>{item.desc}</h1>
+            </div>
+          );
+        })}
     </div>
   );
 };
