@@ -1,38 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useScrapedData } from "./context";
 
 const News = () => {
-  const [scrapedData, setScrapedData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const item = scrapedData[0];
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Use fetch to send a GET request to the backend to trigger scraping
-        const response = await fetch("http://localhost:3000/scrape");
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-
-        // Parse the response data (JSON format)
-        const data = await response.json();
-        setScrapedData(data);
-      } catch (err) {
-        setError("Failed to scrape data");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // Call the function immediately when the component mounts
-    fetchData();
-  }, []); // Empty dependency array means it will run only once, like componentDidMount()
+  const { scrapedData, loading, error } = useScrapedData();
 
   return (
     <div className="content">
