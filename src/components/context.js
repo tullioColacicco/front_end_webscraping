@@ -19,14 +19,23 @@ export const ScrapedDataProvider = ({ children }) => {
       setError(null);
 
       try {
-        const response = await fetch("http://localhost:3000/scrape");
+        // Make both fetch requests in parallel
+        const [response1, response2] = await Promise.all([
+          fetch("http://localhost:3000/scrape"),
+          fetch("http://localhost:3002/scrape"),
+        ]);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
+        // Check if both responses are successful
+        if (!response1.ok || !response2.ok) {
+          throw new Error("Failed to fetch data from one or more endpoints");
         }
 
-        const data = await response.json();
-        setScrapedData(data);
+        // Parse the response data as JSON
+        const data1 = await response1.json();
+        const data2 = await response2.json();
+
+        // Combine both datasets
+        setScrapedData([data1, data2]);
       } catch (err) {
         setError("Failed to scrape data");
         console.error(err);
@@ -35,11 +44,11 @@ export const ScrapedDataProvider = ({ children }) => {
       }
     };
 
-    // Only fetch data if it's not already loaded
-    if (scrapedData.length === 0) {
+    // Only fetch data if it hasn't been loaded already
+    if (scrapedData.length === 0 && !loading && !error) {
       fetchData();
     }
-  }, [scrapedData]);
+  }, [scrapedData.length, loading, error]); // Effect only runs when initial state is empty or when error/loading states change
 
   return (
     <ScrapedDataContext.Provider value={{ scrapedData, loading, error }}>
