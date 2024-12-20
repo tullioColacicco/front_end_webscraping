@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { margin } from "@mui/system";
+import { fontFamily, margin } from "@mui/system";
 
 const Prospects = () => {
   const { scrapedData, loading, error } = useScrapedData();
@@ -26,6 +26,7 @@ const Prospects = () => {
                   height: 350, // Fixed height for the card
                   boxShadow: 3, // Optional for card shadow
                   borderRadius: 2, // Optional for rounded corners
+                  fontFamily: "Jaro",
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>
@@ -35,13 +36,19 @@ const Prospects = () => {
                   >
                     {item.date}
                   </Typography>
-                  <Typography variant="h5" component="div">
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{ fontFamily: "Jaro" }}
+                  >
                     benevolent
                   </Typography>
                   <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
                     adjective
                   </Typography>
-                  <Typography variant="body2">{item.title}</Typography>
+                  <Typography variant="body2" sx={{ fontFamily: "Jaro" }}>
+                    {item.title}
+                  </Typography>
                 </CardContent>
 
                 {/* This section will always be pushed to the bottom */}

@@ -43,7 +43,9 @@ const News = () => {
                   <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
                     adjective
                   </Typography>
-                  <Typography variant="body2">{item.desc}</Typography>
+                  <Typography variant="body2" sx={{ fontFamily: "Jaro" }}>
+                    {item.desc}
+                  </Typography>
                 </CardContent>
 
                 {/* This section will always be pushed to the bottom */}
