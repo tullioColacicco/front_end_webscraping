@@ -8,7 +8,8 @@ import { fontFamily, margin } from "@mui/system";
 
 const Prospects = () => {
   const { scrapedData, loading, error } = useScrapedData();
-  console.log(scrapedData[1]);
+  const data = scrapedData[1];
+  // console.log(data.children.slice(0));
   return (
     <div className="content">
       {loading && <p>Loading...</p>}
@@ -34,18 +35,21 @@ const Prospects = () => {
                     gutterBottom
                     sx={{ color: "text.secondary", fontSize: 14 }}
                   >
-                    {item.date}
+                    {item.name}
                   </Typography>
                   <Typography
                     variant="h5"
                     component="div"
                     sx={{ fontFamily: "Jaro" }}
-                  >
-                    benevolent
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                    adjective
-                  </Typography>
+                  ></Typography>
+                  {item.children.slice(0, 3).map((item, index) => {
+                    return (
+                      <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                        {item.title}
+                      </Typography>
+                    );
+                  })}
+
                   <Typography variant="body2" sx={{ fontFamily: "Jaro" }}>
                     {item.title}
                   </Typography>
