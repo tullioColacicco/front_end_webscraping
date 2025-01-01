@@ -1,93 +1,48 @@
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { useScrapedData } from "./context";
 
 function Home() {
+  const { scrapedData, loading, error } = useScrapedData();
+  // const data = scrapedData[2];
+  // console.log(data[0].text);
   return (
     <div className="content">
-      <div className="card_container">
-        <article className="card">
-          <img
-            src="https://www.brik.co/cdn/shop/articles/new-york-yankees-pixel-art-logo-sports-mlb-new-york-yankees_grande.png?v=1501224718"
-            alt="Typhlosion"
-          />
-          <div className="text">
-            <h3>You Got!</h3>
-            <p>Typhlosion</p>
-            <button>More Info</button>
-          </div>
-        </article>
-      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <div className="card_container">
-        <article className="card">
-          <img
-            src="https://img.pokemondb.net/sprites/silver/shiny/typhlosion.png"
-            alt="Typhlosion"
-          />
-          <div className="text">
-            <h3>You Got!</h3>
-            <p>Typhlosion</p>
-            <button>More Info</button>
-          </div>
-        </article>
-      </div>
-
-      <div className="card_container">
-        <Card>
-          <CardContent>
-            <Typography
-              gutterBottom
-              sx={{ color: "text.secondary", fontSize: 14 }}
-            >
-              Date
-            </Typography>
-            <Typography variant="h5" component="div">
-              benevolent
-            </Typography>
-            <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-              adjective
-            </Typography>
-            <Typography variant="body2">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      </div>
-      <div className="card_container">
-        <Card>
-          <CardContent>
-            <Typography
-              gutterBottom
-              sx={{ color: "text.secondary", fontSize: 14 }}
-            >
-              Word of the Day
-            </Typography>
-            <Typography variant="h5" component="div">
-              benevolent
-            </Typography>
-            <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-              adjective
-            </Typography>
-            <Typography variant="body2">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      </div>
+      {scrapedData.length > 0 &&
+        scrapedData[2].map((item, index) => {
+          // Encode the player's name (or any string) for a Google search URL
+          const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+            item.text[1].slice(0, -2)
+          )}`;
+          const href = "mlb.com" + item.href;
+          return (
+            <div className="card_container" key={index}>
+              <div className="card_container">
+                <article className="card">
+                  <img src={item.img} alt="Typhlosion" />
+                  <div className="text">
+                    <h3>{item.text[1].slice(0, -2)}</h3>
+                    <p>Bats: {item.text[2]}</p>
+                    <p>{item.text[3]}</p>
+                    <p>{item.text[4]}</p>
+                    <p>{item.text[5]}</p>
+                    <button>
+                      <a
+                        href={googleSearchUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="more-info-button"
+                      >
+                        More Info
+                      </a>
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 }

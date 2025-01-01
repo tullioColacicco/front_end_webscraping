@@ -20,22 +20,24 @@ export const ScrapedDataProvider = ({ children }) => {
 
       try {
         // Make both fetch requests in parallel
-        const [response1, response2] = await Promise.all([
+        const [response1, response2, response3] = await Promise.all([
           fetch("http://localhost:3000/scrape"),
           fetch("http://localhost:3002/scrape"),
+          fetch("http://localhost:3003/scrape"),
         ]);
 
         // Check if both responses are successful
-        if (!response1.ok || !response2.ok) {
+        if (!response1.ok || !response2.ok || !response3.ok) {
           throw new Error("Failed to fetch data from one or more endpoints");
         }
 
         // Parse the response data as JSON
         const data1 = await response1.json();
         const data2 = await response2.json();
+        const data3 = await response3.json();
 
         // Combine both datasets
-        setScrapedData([data1, data2]);
+        setScrapedData([data1, data2, data3]);
       } catch (err) {
         setError("Failed to scrape data");
         console.error(err);

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { useScrapedData } from "./context";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { margin } from "@mui/system";
 
 const News = () => {
   const { scrapedData, loading, error } = useScrapedData();
@@ -18,9 +16,9 @@ const News = () => {
       {scrapedData.length > 0 &&
         scrapedData[0].map((item, index) => {
           const href = "mlb.com" + item.href;
-
+          console.log(item.title);
           return (
-            <div className="card_container">
+            <div className="card_container" key={index}>
               <Card
                 sx={{
                   display: "flex",
@@ -37,20 +35,34 @@ const News = () => {
                   >
                     {item.date}
                   </Typography>
-                  <Typography variant="h5" component="div">
-                    benevolent
-                  </Typography>
-                  <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                    adjective
-                  </Typography>
-                  <Typography variant="body2" sx={{ fontFamily: "Jaro" }}>
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      justifyContent: "center",
+                      display: "flex",
+                    }}
+                    variant="h5"
+                    component="div"
+                  ></Typography>
+                  <Typography
+                    sx={{ color: "text.secondary", mb: 1.5 }}
+                  ></Typography>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontFamily: "Jaro",
+                      justifyItems: "center",
+                      marginTop: 8,
+                      lineHeight: 1.5,
+                    }}
+                  >
                     {item.desc}
                   </Typography>
                 </CardContent>
 
                 {/* This section will always be pushed to the bottom */}
                 <CardActions sx={{ marginTop: "auto" }}>
-                  <Button size="small" href={`https://${href}`}>
+                  <Button size="small" href={item.title}>
                     Learn More
                   </Button>
                 </CardActions>

@@ -4,12 +4,10 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { fontFamily, margin } from "@mui/system";
 
 const Prospects = () => {
   const { scrapedData, loading, error } = useScrapedData();
-  const data = scrapedData[1];
-  // console.log(data.children.slice(0));
+
   return (
     <div className="content">
       {loading && <p>Loading...</p>}
@@ -17,9 +15,13 @@ const Prospects = () => {
 
       {scrapedData.length > 0 &&
         scrapedData[1].map((item, index) => {
+          // Encode the player's name (or any string) for a Google search URL
+          const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+            item.name
+          )}`;
           const href = "mlb.com" + item.href;
           return (
-            <div className="card_container">
+            <div className="card_container" key={index}>
               <Card
                 sx={{
                   display: "flex",
@@ -57,7 +59,7 @@ const Prospects = () => {
 
                 {/* This section will always be pushed to the bottom */}
                 <CardActions sx={{ marginTop: "auto" }}>
-                  <Button size="small" href={`https://${href}`}>
+                  <Button size="small" href={googleSearchUrl}>
                     Learn More
                   </Button>
                 </CardActions>

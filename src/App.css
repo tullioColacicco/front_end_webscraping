@@ -1,5 +1,7 @@
-.body{
+.html, .body{
 	font-family: 'Jaro';
+  background-color: #1616162a;
+  
 }
 .container {  display: grid;
   grid-template-columns: 0.4fr 2.1fr 0.5fr;
@@ -17,11 +19,29 @@
 .content { 
   grid-area: content;
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, .5fr));
+  grid-template-columns: repeat(2, minmax(200px, .5fr));
  grid-template-rows: 2fr; 
+ overflow-y: auto; 
   /* height: max-content; */
   /* justify-content: center; */
   /* background-color: aqua; */
+}
+.content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.content::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #55575a; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #0056b3; /* Darker color when hovered */
 }
 
 .header { grid-area: header;
@@ -76,7 +96,7 @@
 }
 .content {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	grid-template-rows: .5fr .5fr;
 	grid-gap: 20px;
 	align-items: start;
