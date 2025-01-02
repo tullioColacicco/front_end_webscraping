@@ -33,6 +33,11 @@ function Home() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="more-info-button"
+                        style={{
+                          textDecoration: "none", // Removes underline
+                          color: "inherit",
+                          fontFamily: "Jaro", // Matches the parent color
+                        }}
                       >
                         More Info
                       </a>

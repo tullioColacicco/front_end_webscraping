@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 const Prospects = () => {
   const { scrapedData, loading, error } = useScrapedData();
-
+  console.log(scrapedData[1]);
   return (
     <div className="content">
       {loading && <p>Loading...</p>}
@@ -35,7 +35,7 @@ const Prospects = () => {
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography
                     gutterBottom
-                    sx={{ color: "text.secondary", fontSize: 14 }}
+                    sx={{ color: "text.primary", fontSize: 20 }}
                   >
                     {item.name}
                   </Typography>
@@ -43,11 +43,27 @@ const Prospects = () => {
                     variant="h5"
                     component="div"
                     sx={{ fontFamily: "Jaro" }}
-                  ></Typography>
+                  >
+                    #{index + 1} Prospect
+                  </Typography>
                   {item.children.slice(0, 3).map((item, index) => {
                     return (
-                      <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                        {item.title}
+                      <Typography
+                        sx={{ color: "text.secondary", mb: 1.5, mt: 1.5 }}
+                        href={item.href}
+                        key={index}
+                      >
+                        <a
+                          target="_blank" // Opens link in a new tab
+                          rel="noopener noreferrer" // Prevents security vulnerabilities
+                          href={`https://www.mlb.com${item.href}`}
+                          style={{
+                            textDecoration: "none", // Removes underline
+                            color: "inherit", // Matches the parent color
+                          }}
+                        >
+                          {item.title}...
+                        </a>
                       </Typography>
                     );
                   })}
